@@ -16,12 +16,21 @@ class ProfilesView extends GetView<ProfilesController> {
       ),
       body: const Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.min,
           children: [
             BasicButton(
               buttonText: 'patient',
               buttonColor: Colors.blue,
               page: 'login'
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            BasicButton(
+                buttonText: 'controller',
+                buttonColor: Colors.orange,
+                page: 'login'
             )
           ],
         )
