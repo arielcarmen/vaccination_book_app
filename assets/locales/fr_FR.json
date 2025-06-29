@@ -1,7 +1,15 @@
 {
   "welcome": "Bienvenue",
   "vaccine": "Vaccin",
-  "my_vaccines": "Mes vaccin",
+  "my_vaccines": "Mes vaccins",
   "scan": "Scanner",
-  "generate": "Génerer Qr"
+  "generate": "Génerer code Qr",
+  "patient": "Patient",
+  "controller": "Controlleur",
+  "passphrase": "Phrase d'authentification (12 mots)",
+  "login": "Se conecter",
+  "hello": "Bonjour, ",
+  "identity": "Identité",
+  "age": "Age",
+  "address": "Adresse"
 }
