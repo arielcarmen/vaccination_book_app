@@ -11,14 +11,15 @@ class ProfilesView extends GetView<ProfilesController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ProfilesView'),
+        title: Text('profile_choice'.tr),
         centerTitle: true,
       ),
       body: const Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             BasicButton(
-              buttonText: 'patient'.tr,
+              buttonText: 'patient',
               buttonColor: Colors.blue,
               page: 'login'
             )

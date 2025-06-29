@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 class BasicButton extends StatelessWidget {
   final String buttonText;
-  final Widget page;
+  final String page;
   final Color buttonColor;
 
   const BasicButton({super.key,
@@ -16,7 +16,7 @@ class BasicButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        Get.to(page);
+        Get.toNamed(page);
       },
       style: ElevatedButton.styleFrom(
         backgroundColor: buttonColor
