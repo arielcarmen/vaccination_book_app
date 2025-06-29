@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:vaccination_book_app/app/widgets/basic_button.dart';
 
 import '../controllers/profiles_controller.dart';
 
@@ -14,10 +15,15 @@ class ProfilesView extends GetView<ProfilesController> {
         centerTitle: true,
       ),
       body: const Center(
-        child: Text(
-          'ProfilesView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+        child: Column(
+          children: [
+            BasicButton(
+              buttonText: 'patient'.tr,
+              buttonColor: Colors.blue,
+              page: 'login'
+            )
+          ],
+        )
       ),
     );
   }
