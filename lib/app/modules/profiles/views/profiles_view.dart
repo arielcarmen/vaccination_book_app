@@ -14,7 +14,7 @@ class ProfilesView extends GetView<ProfilesController> {
         title: Text('profile_choice'.tr),
         centerTitle: true,
       ),
-      body: const Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.min,
