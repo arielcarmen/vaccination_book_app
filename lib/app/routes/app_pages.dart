@@ -6,6 +6,8 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/profiles/bindings/profiles_binding.dart';
 import '../modules/profiles/views/profiles_view.dart';
+import '../modules/scanner/bindings/scanner_binding.dart';
+import '../modules/scanner/views/scanner_view.dart';
 
 part 'app_routes.dart';
 
@@ -29,6 +31,11 @@ class AppPages {
       name: _Paths.PROFILES,
       page: () => const ProfilesView(),
       binding: ProfilesBinding(),
+    ),
+    GetPage(
+      name: _Paths.SCANNER,
+      page: () => const ScannerView(),
+      binding: ScannerBinding(),
     ),
   ];
 }
