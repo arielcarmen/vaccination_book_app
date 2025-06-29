@@ -11,5 +11,6 @@
   "hello": "Bonjour, ",
   "identity": "Identité",
   "age": "Age",
-  "address": "Adresse"
+  "address": "Adresse",
+  "profile_choice": "Choix du profil"
 }

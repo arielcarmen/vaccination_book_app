@@ -15,14 +15,32 @@ class LocaleKeys {
   static const my_vaccines = 'my_vaccines';
   static const scan = 'scan';
   static const generate = 'generate';
+  static const patient = 'patient';
+  static const controller = 'controller';
+  static const passphrase = 'passphrase';
+  static const login = 'login';
+  static const hello = 'hello';
+  static const identity = 'identity';
+  static const age = 'age';
+  static const address = 'address';
+  static const profile_choice = 'profile_choice';
 }
 
 class Locales {
   static const fr_FR = {
     'welcome': 'Bienvenue',
     'vaccine': 'Vaccin',
-    'my_vaccines': 'Mes vaccin',
+    'my_vaccines': 'Mes vaccins',
     'scan': 'Scanner',
-    'generate': 'Génerer Qr',
+    'generate': 'Génerer code Qr',
+    'patient': 'Patient',
+    'controller': 'Controlleur',
+    'passphrase': 'Phrase d\'authentification (12 mots)',
+    'login': 'Se conecter',
+    'hello': 'Bonjour, ',
+    'identity': 'Identité',
+    'age': 'Age',
+    'address': 'Adresse',
+    'profile_choice': 'Choix du profil',
   };
 }
