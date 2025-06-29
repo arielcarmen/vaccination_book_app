@@ -14,14 +14,21 @@ class BasicButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        Get.toNamed(page);
-      },
-      style: ElevatedButton.styleFrom(
-        backgroundColor: buttonColor
+    return Container(
+      width: 200,
+      child: ElevatedButton(
+        onPressed: () {
+          Get.toNamed(page);
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: buttonColor,
+          foregroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0)
+          )
+        ),
+        child: Text(buttonText),
       ),
-      child: Text(buttonText),
     );
   }
 }
