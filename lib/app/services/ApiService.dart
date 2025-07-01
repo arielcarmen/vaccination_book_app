@@ -38,7 +38,7 @@ class ApiService {
     );
     if (response.statusCode == 201) {
       Get.snackbar('Succès', 'Connexion réussie');
-      Get.toNamed('');
+      Get.toNamed('vaccins');
       // return json.decode(response.body);
     } else {
       Get.snackbar('Echec', 'NPI ou Mot de passe incorrecte');
