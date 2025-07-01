@@ -8,6 +8,8 @@ import '../modules/profiles/bindings/profiles_binding.dart';
 import '../modules/profiles/views/profiles_view.dart';
 import '../modules/scanner/bindings/scanner_binding.dart';
 import '../modules/scanner/views/scanner_view.dart';
+import '../modules/vaccins/bindings/vaccins_binding.dart';
+import '../modules/vaccins/views/vaccins_view.dart';
 
 part 'app_routes.dart';
 
@@ -36,6 +38,11 @@ class AppPages {
       name: _Paths.SCANNER,
       page: () => const ScannerView(),
       binding: ScannerBinding(),
+    ),
+    GetPage(
+      name: _Paths.VACCINS,
+      page: () => const VaccinsView(),
+      binding: VaccinsBinding(),
     ),
   ];
 }
