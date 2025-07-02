@@ -45,6 +45,7 @@ class ApiService {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
 
 // Save an integer value to 'counter' key.
+      print(json.decode(response.body));
       await prefs.setString('npi', json.decode(response.body)['npi']);
       var role = json.decode(response.body)['role'];
 
