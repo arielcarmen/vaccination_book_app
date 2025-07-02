@@ -3,6 +3,8 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 class ApiService {
   final String baseUrl;
 
@@ -39,8 +41,35 @@ class ApiService {
     );
     if (response.statusCode == 201) {
       Get.snackbar('Succès', 'Connexion réussie');
-      Get.toNamed('vaccins');
+
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+// Save an integer value to 'counter' key.
+      await prefs.setString('npi', json.decode(response.body)['npi']);
+      var role = json.decode(response.body)['role'];
+
+      if (role == "controller"){
+        Get.toNamed('scanner');
+      } else {
+        Get.toNamed('vaccins');
+      }
+
       // return json.decode(response.body);
+    } else {
+      Get.snackbar('Echec', 'NPI ou Mot de passe incorrecte');
+      // throw Exception('Failed to post data');
+    }
+  }
+
+  Future<void> checksigns(String endpoint, Map<String, dynamic> data) async {
+    final response = await http.post(
+      Uri.parse('$baseUrl/$endpoint'),
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode(data),
+    );
+    if (response.statusCode == 201) {
+      Get.snackbar('Succès', 'Infos recuperees');
+      return json.decode(response.body);
     } else {
       Get.snackbar('Echec', 'NPI ou Mot de passe incorrecte');
       // throw Exception('Failed to post data');
