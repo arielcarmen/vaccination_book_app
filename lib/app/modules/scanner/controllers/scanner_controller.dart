@@ -1,23 +1,22 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ScannerController extends GetxController {
   //TODO: Implement ScannerController
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
+  var qrResult = ''.obs;
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
+  void setQRResult(String result) {
+    qrResult.value = result;
+    Get.defaultDialog(
+      title: "QR Code Scanned",
+      middleText: "Scanned Result: $result",
+      textConfirm: "OK",
+      confirmTextColor: Colors.white,
+      onConfirm: () {
+        Get.back(); // Ferme le dialogue
+      },
+    );
 
-  @override
-  void onClose() {
-    super.onClose();
   }
-
-  void increment() => count.value++;
-}
+  }

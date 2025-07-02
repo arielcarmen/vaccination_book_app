@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:vaccination_book_app/app/services/ApiService.dart';
 
 class LoginController extends GetxController {
-  ApiService api = ApiService('http://0.0.0.0:8000');
+  ApiService api = ApiService('http://10.21.246.179:8000');
   final npiController = TextEditingController();
   final passwordController = TextEditingController();
 
