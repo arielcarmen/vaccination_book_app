@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "420809655646",
+    "project_id": "med-book-7f469",
+    "storage_bucket": "med-book-7f469.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:420809655646:android:886f267a0afd21d7d77bcf",
+        "android_client_info": {
+          "package_name": "com.lightningdevs.vaccination_book_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCywsSQLGtZCT-1XDwa_MM1jByrYKIZEs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

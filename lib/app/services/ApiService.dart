@@ -13,6 +13,7 @@ class ApiService {
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
+      Get.snackbar('Erreur', 'Echec de recupération du carnet');
       throw Exception('Failed to load data');
     }
   }
@@ -43,6 +44,18 @@ class ApiService {
     } else {
       Get.snackbar('Echec', 'NPI ou Mot de passe incorrecte');
       // throw Exception('Failed to post data');
+    }
+  }
+
+  Future<Map<String, dynamic>> fetchVaccinationRecords(String endpoint, String npi) async {
+    final response = await http.get(
+      Uri.parse('$baseUrl/$endpoint?npi=$npi'),
+      headers: {'Content-Type': 'application/json'},
+    );
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      throw Exception('Failed to load vaccination records');
     }
   }
 }
