@@ -6,6 +6,8 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/profiles/bindings/profiles_binding.dart';
 import '../modules/profiles/views/profiles_view.dart';
+import '../modules/qr_code/bindings/qr_code_binding.dart';
+import '../modules/qr_code/views/qr_code_view.dart';
 import '../modules/scanner/bindings/scanner_binding.dart';
 import '../modules/scanner/views/scanner_view.dart';
 import '../modules/vaccins/bindings/vaccins_binding.dart';
@@ -16,7 +18,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SCANNER;
+  static const INITIAL = Routes.QR_CODE;
 
   static final routes = [
     GetPage(
@@ -43,6 +45,11 @@ class AppPages {
       name: _Paths.VACCINS,
       page: () => const VaccinsView(),
       binding: VaccinsBinding(),
+    ),
+    GetPage(
+      name: _Paths.QR_CODE,
+      page: () => const QrCodeView(),
+      binding: QrCodeBinding(),
     ),
   ];
 }

@@ -8,6 +8,7 @@ abstract class Routes {
   static const PROFILES = _Paths.PROFILES;
   static const SCANNER = _Paths.SCANNER;
   static const VACCINS = _Paths.VACCINS;
+  static const QR_CODE = _Paths.QR_CODE;
 }
 
 abstract class _Paths {
@@ -17,4 +18,5 @@ abstract class _Paths {
   static const PROFILES = '/profiles';
   static const SCANNER = '/scanner';
   static const VACCINS = '/vaccins';
+  static const QR_CODE = '/qr-code';
 }
