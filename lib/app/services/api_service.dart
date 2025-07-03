@@ -6,9 +6,7 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiService {
-  final String baseUrl;
-
-  ApiService(this.baseUrl);
+  final String baseUrl = "https://python-lnd-connect-production.up.railway.app";
 
   Future<Map<String, dynamic>> get(String endpoint) async {
     final response = await http.get(Uri.parse('$baseUrl/$endpoint'));
@@ -46,10 +44,11 @@ class ApiService {
 
 // Save an integer value to 'counter' key.
       print(json.decode(response.body));
-      await prefs.setString('npi', json.decode(response.body)['npi']);
-      var role = json.decode(response.body)['role'];
+      var user = json.decode(response.body)['user'];
+      await prefs.setString('npi', user['npi']);
+      var role = user['role'];
 
-      if (role == "controller"){
+      if (role == "controlleur"){
         Get.toNamed('scanner');
       } else {
         Get.toNamed('vaccins');

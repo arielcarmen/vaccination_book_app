@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:vaccination_book_app/app/services/ApiService.dart';
+import 'package:vaccination_book_app/app/services/api_service.dart';
 
 class LoginController extends GetxController {
-  ApiService api = ApiService('http://10.21.246.179:8000');
+  ApiService api = ApiService();
   final npiController = TextEditingController();
   final passwordController = TextEditingController();
 
