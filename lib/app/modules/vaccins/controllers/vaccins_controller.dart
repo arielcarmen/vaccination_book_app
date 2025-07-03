@@ -66,7 +66,7 @@ class VaccinsController extends GetxController with GetSingleTickerProviderState
             return data;
           }).toList();
     });
-    isLoading(false);
+    isLoadingExpired(false);
   }
 
   Future<void> fetchOngoingVaccinations(String npi) async {
