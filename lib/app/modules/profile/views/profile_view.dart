@@ -1,0 +1,46 @@
+import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
+
+import '../controllers/profile_controller.dart';
+
+class ProfileView extends GetView<ProfileController> {
+  const ProfileView({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Mon Profil')),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            CircleAvatar(
+              radius: 60,
+              backgroundImage: NetworkImage('https://i.pravatar.cc/300'),
+            ),
+            SizedBox(height: 20),
+            Text('Jean Dupont', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            SizedBox(height: 10),
+            Text('jean.dupont@example.com'),
+            Divider(height: 40),
+            ListTile(
+              leading: Icon(Icons.badge, color: Colors.blue),
+              title: Text('Informations personnelles'),
+              trailing: Icon(Icons.arrow_forward_ios),
+            ),
+            ListTile(
+              leading: Icon(Icons.history, color: Colors.blue),
+              title: Text('Historique des scans'),
+              trailing: Icon(Icons.arrow_forward_ios),
+            ),
+            ListTile(
+              leading: Icon(Icons.security, color: Colors.blue),
+              title: Text('Sécurité'),
+              trailing: Icon(Icons.arrow_forward_ios),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
