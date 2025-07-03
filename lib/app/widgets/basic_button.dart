@@ -23,7 +23,7 @@ class BasicButton extends StatelessWidget {
             backgroundColor: buttonColor,
             foregroundColor: Colors.white,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5.0)
+              borderRadius: BorderRadius.circular(8.0)
             )
           ),
           child: Padding(

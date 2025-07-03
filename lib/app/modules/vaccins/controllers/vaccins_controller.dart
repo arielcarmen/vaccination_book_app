@@ -29,9 +29,9 @@ class VaccinsController extends GetxController with GetSingleTickerProviderState
     final prefs = await SharedPreferences.getInstance();
     String npi = prefs.getString('npi') ?? '';
     fetchVaccinations(npi);
+    fetchExpiredVaccinations(npi);
+    fetchOngoingVaccinations(npi);
   }
-
-
 
   Future<void> fetchVaccinations(String npi) async {
     isLoading(true);
@@ -42,6 +42,10 @@ class VaccinsController extends GetxController with GetSingleTickerProviderState
           snapshot.docs.map((doc) {
             final data = doc.data();
             data['id'] = doc.id;
+            final todayTimestamp = Timestamp.fromDate(today);
+
+            print(todayTimestamp);
+            print(data['date_expiration']);
             return data;
           }).toList();
     });
@@ -52,6 +56,7 @@ class VaccinsController extends GetxController with GetSingleTickerProviderState
     final todayTimestamp = Timestamp.fromDate(today);
     isLoadingExpired(true);
     FirebaseFirestore.instance.collection('vaccins')
+        .where("npi", isEqualTo: npi)
         .where("date_expiration", isLessThan: todayTimestamp)
         .snapshots().listen((snapshot) {
       vaccinationsExpired.value =
@@ -68,6 +73,7 @@ class VaccinsController extends GetxController with GetSingleTickerProviderState
     final todayTimestamp = Timestamp.fromDate(today);
     isLoadingOngoing(true);
     FirebaseFirestore.instance.collection('vaccins')
+        .where("npi", isEqualTo: npi)
         .where("date_expiration", isGreaterThanOrEqualTo: todayTimestamp)
         .snapshots().listen((snapshot) {
       vaccinationOngoing.value =

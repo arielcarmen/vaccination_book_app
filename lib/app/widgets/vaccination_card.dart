@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+
 class VaccinationCard extends StatelessWidget {
   final Map<String, dynamic> vaccination;
 
@@ -14,9 +15,14 @@ class VaccinationCard extends StatelessWidget {
     final DateTime expirationDate = timestamp.toDate();
     final formattedExpiration = DateFormat('dd MMM yyyy').format(expirationDate);
 
-    final Timestamp vaccination_timestamp = vaccination['date'];
-    final DateTime date = vaccination_timestamp.toDate();
+    final Timestamp vaccinationTimestamp = vaccination['date'];
+    final DateTime date = vaccinationTimestamp.toDate();
     final formattedVaccinationDate = DateFormat('dd MMM yyyy').format(date);
+
+    DateTime today = DateTime.now();
+    DateTime vaccinationDateOnly = dateOnly(expirationDate);
+    DateTime todayOnly = dateOnly(today);
+
 
     return Card(
       elevation: 1,
@@ -83,43 +89,34 @@ class VaccinationCard extends StatelessWidget {
                 ],
               ),
 
-              // Centre de vaccination
-              // Row(
-              //   children: [
-              //     const Icon(Icons.location_on, size: 18, color: Colors.red),
-              //     const SizedBox(width: 8),
-              //     // Expanded(
-              //     //   child: Text(
-              //     //     vaccination['centre'],
-              //     //     style: const TextStyle(
-              //     //       fontSize: 18,
-              //     //       fontWeight: FontWeight.w500,
-              //     //     ),
-              //     //   ),
-              //     // ),
-              //   ],
-              // ),
-              // const SizedBox(height: 5),
-
-              // Statut et validité
+              SizedBox(height: 16,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Chip(
-                    backgroundColor: Colors.blue.shade100,
-                    label: Text(
-                      "Statut: Valide",
-                      style: TextStyle(
-                        color: Colors.blue.shade800,
-                        fontWeight: FontWeight.w500,
+                  Row(
+                    children: [
+                      Text(
+                        "Statut: ",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                    ),
+                      Text(
+                        vaccinationDateOnly.isAfter(todayOnly) ? "Valide" : "Expiré",
+                        style: TextStyle(
+                          color: vaccinationDateOnly.isAfter(todayOnly) ? Colors.green : Colors.red,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
                   ),
+
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       const Text(
-                        "Expire le:",
+                        "Expiration:",
                         style: TextStyle(fontSize: 12),
                       ),
                       Text(
@@ -140,4 +137,8 @@ class VaccinationCard extends StatelessWidget {
       ),
     );
   }
+}
+
+DateTime dateOnly(DateTime date) {
+  return DateTime(date.year, date.month, date.day);
 }

@@ -18,9 +18,14 @@ void main() async{
 
   final prefs = await SharedPreferences.getInstance();
   String npi = prefs.getString('npi') ?? '';
+  bool firstStart = prefs.getBool('first_start') ?? true;
 
-  if (npi.isNotEmpty){
-    route = "/home";
+  if (firstStart == true){
+    route = "/onboarding";
+  } else {
+    if (npi.isNotEmpty){
+      route = "/home";
+    }
   }
 
   runApp(
@@ -31,10 +36,10 @@ void main() async{
       getPages: AppPages.routes,
       theme: ThemeData(
         useMaterial3: false,
-          primaryColor: themeBlue,           // Couleur principale
+          primaryColor: themeBlue,
           colorScheme: ColorScheme.fromSwatch().copyWith(
-            primary: themeBlue,               // Couleur principale aussi ici (recommandé)
-            secondary: Colors.orange,           // Couleur secondaire (accent)
+            primary: themeBlue,
+            secondary: themeOrange,
           ),
           appBarTheme: AppBarTheme(
             backgroundColor: themeBlue,

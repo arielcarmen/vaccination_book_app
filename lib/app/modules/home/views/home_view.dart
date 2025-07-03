@@ -7,6 +7,8 @@ import 'package:vaccination_book_app/app/modules/qr_code/views/qr_code_view.dart
 import 'package:vaccination_book_app/app/modules/rdv/views/rdv_view.dart';
 import 'package:vaccination_book_app/app/modules/vaccins/views/vaccins_view.dart';
 import 'package:vaccination_book_app/app/modules/welcome/views/welcome_view.dart';
+import 'package:vaccination_book_app/app/services/encoding_service.dart';
+import 'package:vaccination_book_app/app/values.dart';
 
 import '../../../controllers/navigation_controller.dart';
 import '../../../widgets/qr_scanner_frame.dart';
@@ -27,23 +29,28 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
       body: Obx(() => _pages[_navController.currentIndex.value]),
       bottomNavigationBar: _buildBottomNavBar(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Get.defaultDialog(
-              title: "Scannez mon carnet",
-              content: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: PrettyQrView.data(data: controller.npi),
-                  )
-              ),
-          );
-        },
-        backgroundColor: Colors.blue,
-        elevation: 5,
-        child: Icon(Icons.qr_code_scanner, size: 30, color: Colors.white,),
+      floatingActionButton: Transform.translate(
+        offset: Offset(0, -16),
+        child: FloatingActionButton(
+          onPressed: () {
+            var hidden = chiffrementSimple(controller.npi, hidk);
+            Get.defaultDialog(
+                title: "Voici mon carnet",
+                contentPadding: EdgeInsets.all(16.0),
+                content: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: PrettyQrView.data(data: hidden),
+                    )
+                ),
+            );
+          },
+          backgroundColor: Colors.blue,
+          elevation: 5,
+          child: Icon(Icons.qr_code_scanner, size: 30, color: Colors.white,),
+        ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterDocked,
     );
   }
 
