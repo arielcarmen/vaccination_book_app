@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
@@ -38,30 +39,37 @@ class ApiService {
       body: json.encode(data),
     );
     if (response.statusCode == 201) {
-      Get.snackbar('Succès', 'Connexion réussie');
+      Get.snackbar('Succès', 'Connexion réussie',backgroundColor: Colors.green, colorText: Colors.white);
 
       final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-// Save an integer value to 'counter' key.
-      print(json.decode(response.body));
       var user = json.decode(response.body)['user'];
-      await prefs.setString('npi', user['npi']);
+
       var role = user['role'];
+      var nom = user['nom'];
+      var prenom = user['prenom'];
+      var email = user['email'];
+      var telephone = user['telephone'];
+
+      await prefs.setString('npi', user['npi']);
+      await prefs.setString('nom', nom);
+      await prefs.setString('prenom', prenom);
+      await prefs.setString('email', email);
+      await prefs.setString('telephone', telephone);
 
       if (role == "controlleur"){
-        Get.toNamed('scanner');
+        Get.offNamed('/scanner');
       } else {
-        Get.toNamed('vaccins');
+        Get.offNamed('/home');
       }
 
-      // return json.decode(response.body);
     } else {
-      Get.snackbar('Echec', 'NPI ou Mot de passe incorrecte');
+      Get.snackbar('Echec', 'NPI ou Mot de passe incorrecte',backgroundColor: Colors.red, colorText: Colors.white);
       // throw Exception('Failed to post data');
     }
   }
 
-  Future<void> checksigns(String endpoint, Map<String, dynamic> data) async {
+  Future<void> checkVaccins(String endpoint, Map<String, dynamic> data) async {
     final response = await http.post(
       Uri.parse('$baseUrl/$endpoint'),
       headers: {'Content-Type': 'application/json'},
@@ -71,8 +79,7 @@ class ApiService {
       Get.snackbar('Succès', 'Infos recuperees');
       return json.decode(response.body);
     } else {
-      Get.snackbar('Echec', 'NPI ou Mot de passe incorrecte');
-      // throw Exception('Failed to post data');
+      Get.snackbar('Echec', 'Impossible de vérifier les informations');
     }
   }
 

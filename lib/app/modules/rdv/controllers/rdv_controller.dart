@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-class ProfilesController extends GetxController {
-  //TODO: Implement ProfilesController
+class RdvController extends GetxController {
+  //TODO: Implement RdvController
 
   final count = 0.obs;
   @override

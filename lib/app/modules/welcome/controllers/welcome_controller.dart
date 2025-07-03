@@ -1,15 +1,16 @@
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class HomeController extends GetxController {
-  String npi = "";
+class WelcomeController extends GetxController {
 
+  var prenom = "".obs;
   final count = 0.obs;
   @override
-  Future<void> onInit() async {
+  void onInit() async{
     super.onInit();
+
     final prefs = await SharedPreferences.getInstance();
-    npi = prefs.getString('npi') ?? '';
+    prenom.value = prefs.getString('prenom') ?? '';
   }
 
   @override

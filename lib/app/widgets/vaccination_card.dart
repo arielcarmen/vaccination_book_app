@@ -14,67 +14,92 @@ class VaccinationCard extends StatelessWidget {
     final DateTime expirationDate = timestamp.toDate();
     final formattedExpiration = DateFormat('dd MMM yyyy').format(expirationDate);
 
+    final Timestamp vaccination_timestamp = vaccination['date'];
+    final DateTime date = vaccination_timestamp.toDate();
+    final formattedVaccinationDate = DateFormat('dd MMM yyyy').format(date);
+
     return Card(
-      elevation: 4,
-      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+      elevation: 1,
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal:24),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(8),
       ),
       child: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [Colors.blue.shade50, Colors.white],
-          ),
-          borderRadius: BorderRadius.circular(12),
+          // gradient: LinearGradient(
+          //   begin: Alignment.topLeft,
+          //   end: Alignment.bottomRight,
+          //   colors: [Colors.blue.shade50, Colors.white],
+          // ),
+          borderRadius: BorderRadius.circular(8),
         ),
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // En-tête avec ID et date
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "In ${vaccination['npi']}",
-                    style: const TextStyle(
+                    "id: ${vaccination['id']}",
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                      color: Colors.blue,
+                      fontSize: 12,
+                      color: Colors.grey.shade600,
                     ),
                   ),
                   Text(
-                    "aa",
+                    formattedVaccinationDate,
                     // DateFormat('dd MMM yyyy').format(DateTime.parse(vaccination['date'])).toString(),
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: 12,
                       color: Colors.grey.shade600,
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 15),
+              const SizedBox(height: 5),
 
-              // Centre de vaccination
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Icon(Icons.location_on, size: 18, color: Colors.blue),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      vaccination['centre'],
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                      ),
+                  Text(
+                    "Vaccin : ",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15
+                    ),
+                  ),
+                  Text(
+                    vaccination['vaccin'].toUpperCase(),
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 10),
+
+              // Centre de vaccination
+              // Row(
+              //   children: [
+              //     const Icon(Icons.location_on, size: 18, color: Colors.red),
+              //     const SizedBox(width: 8),
+              //     // Expanded(
+              //     //   child: Text(
+              //     //     vaccination['centre'],
+              //     //     style: const TextStyle(
+              //     //       fontSize: 18,
+              //     //       fontWeight: FontWeight.w500,
+              //     //     ),
+              //     //   ),
+              //     // ),
+              //   ],
+              // ),
+              // const SizedBox(height: 5),
 
               // Statut et validité
               Row(
@@ -94,7 +119,7 @@ class VaccinationCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       const Text(
-                        "Validité:",
+                        "Expire le:",
                         style: TextStyle(fontSize: 12),
                       ),
                       Text(
@@ -102,28 +127,12 @@ class VaccinationCard extends StatelessWidget {
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
-                          color: Colors.green,
+                          color: Colors.red,
                         ),
                       ),
                     ],
                   ),
                 ],
-              ),
-              const SizedBox(height: 8),
-
-              // Type de vaccin
-              Align(
-                alignment: Alignment.centerRight,
-                child: Chip(
-                  backgroundColor: Colors.green.shade50,
-                  label: Text(
-                    vaccination['vaccin'].toUpperCase(),
-                    style: TextStyle(
-                      color: Colors.green.shade800,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
               ),
             ],
           ),

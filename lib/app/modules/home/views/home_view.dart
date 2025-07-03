@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:vaccination_book_app/app/modules/profile/views/profile_view.dart';
 import 'package:vaccination_book_app/app/modules/qr_code/views/qr_code_view.dart';
+import 'package:vaccination_book_app/app/modules/rdv/views/rdv_view.dart';
 import 'package:vaccination_book_app/app/modules/vaccins/views/vaccins_view.dart';
+import 'package:vaccination_book_app/app/modules/welcome/views/welcome_view.dart';
 
 import '../../../controllers/navigation_controller.dart';
+import '../../../widgets/qr_scanner_frame.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   final NavigationController _navController = Get.put(NavigationController());
 
   final List<Widget> _pages = [
+    WelcomeView(),
     VaccinsView(),
-    QrCodeView(),
+    RdvView(),
     ProfileView(),
   ];
 
@@ -22,6 +27,23 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
       body: Obx(() => _pages[_navController.currentIndex.value]),
       bottomNavigationBar: _buildBottomNavBar(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.defaultDialog(
+              title: "Scannez mon carnet",
+              content: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: PrettyQrView.data(data: controller.npi),
+                  )
+              ),
+          );
+        },
+        backgroundColor: Colors.blue,
+        elevation: 5,
+        child: Icon(Icons.qr_code_scanner, size: 30, color: Colors.white,),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 
@@ -37,21 +59,22 @@ class HomeView extends GetView<HomeController> {
       items: [
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
+          label: 'Accueil',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.vaccines),
           label: 'Mes vaccins',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.qr_code_scanner),
-          label: 'Qr',
+          icon: Icon(Icons.calendar_today),
+          label: 'Rendez-Vous',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
           label: 'Profil',
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
-          label: 'Paramètres',
-        ),
       ],
     ));
+
   }
 }

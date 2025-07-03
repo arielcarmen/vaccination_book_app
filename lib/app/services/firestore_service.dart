@@ -5,9 +5,11 @@ class FirestoreService extends GetxService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   // Récupère toutes les vaccinations
-  Future<List<Map<String, dynamic>>> getVaccinations() async {
+  Future<List<Map<String, dynamic>>> getVaccinations(String npi) async {
     try {
-      QuerySnapshot snapshot = await _firestore.collection('vaccins').get();
+      QuerySnapshot snapshot = await _firestore.collection('vaccins')
+          .where("npi", isEqualTo: npi)
+          .get();
       return snapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
     } catch (e) {
       Get.snackbar("Erreur", e.toString());

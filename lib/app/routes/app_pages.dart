@@ -6,14 +6,16 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
-import '../modules/profiles/bindings/profiles_binding.dart';
-import '../modules/profiles/views/profiles_view.dart';
 import '../modules/qr_code/bindings/qr_code_binding.dart';
 import '../modules/qr_code/views/qr_code_view.dart';
+import '../modules/rdv/bindings/rdv_binding.dart';
+import '../modules/rdv/views/rdv_view.dart';
 import '../modules/scanner/bindings/scanner_binding.dart';
 import '../modules/scanner/views/scanner_view.dart';
 import '../modules/vaccins/bindings/vaccins_binding.dart';
 import '../modules/vaccins/views/vaccins_view.dart';
+import '../modules/welcome/bindings/welcome_binding.dart';
+import '../modules/welcome/views/welcome_view.dart';
 
 part 'app_routes.dart';
 
@@ -34,11 +36,6 @@ class AppPages {
       binding: LoginBinding(),
     ),
     GetPage(
-      name: _Paths.PROFILES,
-      page: () => const ProfilesView(),
-      binding: ProfilesBinding(),
-    ),
-    GetPage(
       name: _Paths.SCANNER,
       page: () => const ScannerView(),
       binding: ScannerBinding(),
@@ -57,6 +54,16 @@ class AppPages {
       name: _Paths.PROFILE,
       page: () => const ProfileView(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.WELCOME,
+      page: () => const WelcomeView(),
+      binding: WelcomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.RDV,
+      page: () => const RdvView(),
+      binding: RdvBinding(),
     ),
   ];
 }
