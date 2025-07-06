@@ -44,7 +44,11 @@ class LoginView extends GetView<LoginController> {
               obscureText: true,
             ),
             const SizedBox(height: 24.0),
-            BasicButton(buttonText: 'Se connecter', buttonColor: themeBlue, onPressed: controller.login),
+            Obx((){
+              return controller.isLoading.value == false
+                  ? BasicButton(buttonText: 'Se connecter', buttonColor: themeBlue, onPressed: controller.login)
+                  : CircularProgressIndicator();
+            })
           ],
         ),
       ),

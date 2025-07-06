@@ -32,7 +32,8 @@ void main() async{
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Lightning Vaccination Book",
-      initialRoute: route,
+      initialRoute: '/profiles',
+      // initialRoute: route,
       getPages: AppPages.routes,
       theme: ThemeData(
         useMaterial3: false,

@@ -13,6 +13,7 @@ abstract class Routes {
   static const WELCOME = _Paths.WELCOME;
   static const RDV = _Paths.RDV;
   static const ONBOARDING = _Paths.ONBOARDING;
+  static const PRE_SCAN = _Paths.PRE_SCAN;
 }
 
 abstract class _Paths {
@@ -27,4 +28,5 @@ abstract class _Paths {
   static const WELCOME = '/welcome';
   static const RDV = '/rdv';
   static const ONBOARDING = '/onboarding';
+  static const PRE_SCAN = '/pre-scan';
 }

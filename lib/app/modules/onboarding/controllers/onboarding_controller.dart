@@ -12,16 +12,14 @@ class OnboardingController extends GetxController {
       pageController.nextPage(duration: 300.milliseconds, curve: Curves.easeInOut);
     } else {
       final prefs = await SharedPreferences.getInstance();
-      prefs.setBool('first_start', false);
+      finish();
     }
   }
 
   void skip() => finish();
 
   Future<void> finish() async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setBool('first_start', false);
-    Get.offAllNamed('/home');
+    Get.offAllNamed('/login');
   }
 
   final count = 0.obs;

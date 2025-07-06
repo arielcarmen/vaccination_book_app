@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
+import 'package:qr_flutter/qr_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vaccination_book_app/app/modules/profile/views/profile_view.dart';
 import 'package:vaccination_book_app/app/modules/qr_code/views/qr_code_view.dart';
 import 'package:vaccination_book_app/app/modules/rdv/views/rdv_view.dart';
@@ -24,23 +26,28 @@ class HomeView extends GetView<HomeController> {
     ProfileView(),
   ];
 
+  final GlobalKey _qrKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Obx(() => _pages[_navController.currentIndex.value]),
+      resizeToAvoidBottomInset: true,
+      body: SafeArea(child: Obx(() => _pages[_navController.currentIndex.value])),
       bottomNavigationBar: _buildBottomNavBar(),
       floatingActionButton: Transform.translate(
         offset: Offset(0, -16),
         child: FloatingActionButton(
-          onPressed: () {
-            var hidden = chiffrementSimple(controller.npi, hidk);
+          onPressed: () async{
+            final prefs = await SharedPreferences.getInstance();
+            var key = prefs.getString('npi');
+            var hidden = chiffrementSimple(key!, hidk);
             Get.defaultDialog(
                 title: "Voici mon carnet",
                 contentPadding: EdgeInsets.all(16.0),
                 content: Center(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: PrettyQrView.data(data: hidden),
+                      child: PrettyQrView.data(data: hidden)
                     )
                 ),
             );

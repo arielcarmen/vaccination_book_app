@@ -35,46 +35,44 @@ class WelcomeView extends GetView<WelcomeController> {
           'Bonjour, ${controller.prenom.value}',
         );}),
       ),
-      body: Expanded(
-        child: Container(
-          padding: EdgeInsets.only(top: 40),
-          width: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              CarouselSlider(
-                options: CarouselOptions(
-                  height: 225,
-                  autoPlay: true,                  // 👈 Auto-slide activé
-                  autoPlayInterval: Duration(seconds: 2),
-                  enlargeCenterPage: true,
-                  viewportFraction: 0.9,
-                ),
-                items: images.map((path) {
-                  return ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: Image.asset(path, fit: BoxFit.cover, width: double.infinity),
-                  );
-                }).toList(),
+      body: Container(
+        padding: EdgeInsets.only(top: 40),
+        width: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CarouselSlider(
+              options: CarouselOptions(
+                height: 225,
+                autoPlay: true,
+                autoPlayInterval: Duration(seconds: 3),
+                enlargeCenterPage: true,
+                viewportFraction: 0.9,
               ),
-              SizedBox(height: 24,),
-              Image.asset(
-                'assets/images/logo.png',
-                width: 200,
-                fit: BoxFit.cover,
-              ),
-              SizedBox(height: 90,),
-              BasicButton(buttonText: 'Mon carnet', onPressed: (){
-                navController.changePage(1);
-              }, buttonColor: themeBlue),
-              SizedBox(height: 20,),
-              BasicButton(buttonText: 'Prendre un rendez-vous', onPressed: (){
-                navController.changePage(2);
-              }, buttonColor: themeBlue),
-            ],
-          ),
+              items: images.map((path) {
+                return ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.asset(path, fit: BoxFit.cover, width: double.infinity),
+                );
+              }).toList(),
+            ),
+            SizedBox(height: 24,),
+            Image.asset(
+              'assets/images/logo.png',
+              width: 200,
+              fit: BoxFit.cover,
+            ),
+            SizedBox(height: 90,),
+            BasicButton(buttonText: 'Mon carnet', onPressed: (){
+              navController.changePage(1);
+            }, buttonColor: themeBlue),
+            SizedBox(height: 20,),
+            BasicButton(buttonText: 'Prendre un rendez-vous', onPressed: (){
+              Get.snackbar('Oops..', 'Pas encore implémenté',backgroundColor: Colors.red, colorText: Colors.white);;
+            }, buttonColor: themeBlue),
+          ],
         ),
       )
     );

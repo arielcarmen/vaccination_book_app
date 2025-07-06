@@ -6,6 +6,8 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/onboarding/bindings/onboarding_binding.dart';
 import '../modules/onboarding/views/onboarding_view.dart';
+import '../modules/pre_scan/bindings/pre_scan_binding.dart';
+import '../modules/pre_scan/views/pre_scan_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/profiles/bindings/profiles_binding.dart';
@@ -41,7 +43,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SCANNER,
-      page: () => const ScannerView(),
+      page: () => ScannerView(),
       binding: ScannerBinding(),
     ),
     GetPage(
@@ -78,6 +80,11 @@ class AppPages {
       name: _Paths.PROFILES,
       page: () => const ProfilesView(),
       binding: ProfilesBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRE_SCAN,
+      page: () => const PreScanView(),
+      binding: PreScanBinding(),
     ),
   ];
 }

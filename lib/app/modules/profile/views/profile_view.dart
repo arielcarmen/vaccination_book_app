@@ -32,16 +32,25 @@ class ProfileView extends GetView<ProfileController> {
             ListTile(
               leading: Icon(Icons.badge, color: Colors.blue),
               title: Text('Informations personnelles'),
+              onTap: (){
+                Get.snackbar('Oops..', 'Pas encore implémenté',backgroundColor: Colors.red, colorText: Colors.white);;
+              },
               trailing: Icon(Icons.arrow_forward_ios),
             ),
             ListTile(
               leading: Icon(Icons.calendar_month, color: Colors.blue),
               title: Text('Mes rendez-vous'),
+              onTap: (){
+                Get.snackbar('Oops..', 'Pas encore implémenté',backgroundColor: Colors.red, colorText: Colors.white);;
+              },
               trailing: Icon(Icons.arrow_forward_ios),
             ),
             ListTile(
               leading: Icon(Icons.security, color: Colors.blue),
               title: Text('Sécurité'),
+              onTap: (){
+                Get.snackbar('Oops..', 'Pas encore implémenté',backgroundColor: Colors.red, colorText: Colors.white);;
+              },
               trailing: Icon(Icons.arrow_forward_ios),
             ),
             SizedBox(height: 16,),

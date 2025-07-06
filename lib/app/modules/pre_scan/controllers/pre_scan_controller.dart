@@ -1,42 +1,18 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:vaccination_book_app/app/modules/login/controllers/login_controller.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 
-class ApiService {
+class PreScanController extends GetxController {
+  //TODO: Implement PreScanController
+
+  RxBool isLoading = false.obs;
   final String baseUrl = "https://python-lnd-connect-production.up.railway.app";
 
-  LoginController loginn = Get.find<LoginController>();
-  Future<Map<String, dynamic>> get(String endpoint) async {
-    final response = await http.get(Uri.parse('$baseUrl/$endpoint'));
-    if (response.statusCode == 200) {
-      return json.decode(response.body);
-    } else {
-      Get.snackbar('Erreur', 'Echec de recupération du carnet');
-      throw Exception('Failed to load data');
-    }
-  }
-
-  Future<Map<String, dynamic>> post(String endpoint, Map<String, dynamic> data) async {
-    final response = await http.post(
-      Uri.parse('$baseUrl/$endpoint'),
-      headers: {'Content-Type': 'application/json'},
-      body: json.encode(data),
-    );
-    if (response.statusCode == 201) {
-      return json.decode(response.body);
-    } else {
-      throw Exception('Failed to post data');
-    }
-  }
-
-
-
   Future<void> checkVaccins(Map<String, dynamic> data) async {
+    isLoading.value = true;
     final response = await http.post(
       Uri.parse('$baseUrl/verify_vaccins'),
       headers: {'Content-Type': 'application/json'},
@@ -46,7 +22,7 @@ class ApiService {
       List resultats = json.decode(response.body)['resultats'];
       bool conformite = json.decode(response.body)['conformite'];
       var user = json.decode(response.body)['user'];
-
+      isLoading.value = false;
       Get.dialog(ConstrainedBox(
         constraints: BoxConstraints(maxHeight: 350),
         child: AlertDialog(
@@ -95,15 +71,15 @@ class ApiService {
               conformite ? Text(
                 "Vaccins à jour !",
                 textAlign: TextAlign.center, style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.green
+                  fontWeight: FontWeight.bold,
+                  color: Colors.green
               ),
               ) : Text(
-                "Vaccins non à jour !",
-                textAlign: TextAlign.center, style: TextStyle(
+                  "Vaccins non à jour !",
+                  textAlign: TextAlign.center, style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.red
-                )
+              )
               )
             ],
           ),
@@ -111,19 +87,29 @@ class ApiService {
       ));
 
     } else {
+      isLoading.value = false;
       Get.snackbar('Echec', 'Impossible de vérifier les informations');
     }
   }
 
-  Future<Map<String, dynamic>> fetchVaccinationRecords(String endpoint, String npi) async {
-    final response = await http.get(
-      Uri.parse('$baseUrl/$endpoint?npi=$npi'),
-      headers: {'Content-Type': 'application/json'},
-    );
-    if (response.statusCode == 200) {
-      return json.decode(response.body);
-    } else {
-      throw Exception('Failed to load vaccination records');
-    }
+  void launchScan(){
+    Get.toNamed('/scanner');
   }
+  final count = 0.obs;
+  @override
+  void onInit() {
+    super.onInit();
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+  }
+
+  void increment() => count.value++;
 }

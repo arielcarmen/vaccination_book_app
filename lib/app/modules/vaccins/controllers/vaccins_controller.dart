@@ -44,8 +44,6 @@ class VaccinsController extends GetxController with GetSingleTickerProviderState
             data['id'] = doc.id;
             final todayTimestamp = Timestamp.fromDate(today);
 
-            print(todayTimestamp);
-            print(data['date_expiration']);
             return data;
           }).toList();
     });
